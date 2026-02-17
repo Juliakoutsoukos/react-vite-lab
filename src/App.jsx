@@ -21,7 +21,7 @@ export default function App() {
     {
       id: 3,
       title: "Conditional Rendering",
-      description: "Featured items show a ⭐ badge using a conditional.",
+      description: "Featured items show a star badge using a conditional.",
       isFeatured: true,
     },
   ];
