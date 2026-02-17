@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Header from "./components/Header";
+import CardList from "./components/CardList";
+import Footer from "./components/Footer";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  // Data structure requirement: array of objects
+  const cards = [
+    {
+      id: 1,
+      title: "Vite + React Refresher",
+      description: "This card is rendered from an array of objects.",
+      isFeatured: true,
+    },
+    {
+      id: 2,
+      title: "Components",
+      description: "Header, CardList, and Footer all render at the same time.",
+      isFeatured: false,
+    },
+    {
+      id: 3,
+      title: "Conditional Rendering",
+      description: "Featured items show a ⭐ badge using a conditional.",
+      isFeatured: true,
+    },
+  ];
+
+  // Conditional requirement (example #1):
+  const featuredCount = cards.filter((c) => c.isFeatured).length;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>This is my new app :)</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          This is my edit for our lab!
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <main style={{ maxWidth: 800, margin: "0 auto", padding: "1.5rem" }}>
+      <Header
+        title="6.5 Exercise"
+        subtitle="Three components + data structure + conditional rendering"
+      />
 
-export default App
+      <p style={{ marginTop: 0, opacity: 0.9 }}>
+        {featuredCount > 0
+          ? `You have ${featuredCount} featured card(s).`
+          : "No featured cards right now."}
+      </p>
+
+      <CardList items={cards} />
+
+      <Footer name="Julia Koutsoukos" />
+    </main>
+  );
+}
